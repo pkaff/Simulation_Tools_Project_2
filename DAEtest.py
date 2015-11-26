@@ -14,7 +14,7 @@ import numpy as np
 from assimulo.problem import Implicit_Problem #Imports the problem formulation from Assimulo
 from assimulo.solvers import IDA              #Imports the solver IDA from Assimulo
 from squeezer import squeezer, init_squeezer
-
+import matplotlib.pyplot as plt
 
 
 def run_example():
@@ -36,21 +36,31 @@ def run_example():
     #yd0 = [0.0, 0.0, 0.0, -9.82, 0.0] #Initial conditions
     t0 = 0
     y0, yd0 = init_squeezer()
-    print(y0, yd0)
 
     model = Implicit_Problem(residual, y0, yd0, t0)             #Create an Assimulo problem
     model.name = 'Pendulum'        #Specifies the name of problem (optional)
 
     sim = IDA(model) #Create the IDA solver
     sim.algvar = 7*[True] + 7*[False] + 6*[False]
-    print(sim.algvar)
+    sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
         
     tfinal = 0.03        #Specify the final time
     ncp = 500            #Number of communcation points (number of return points)
 
+    print(y0, yd0)
     t,y,yd = sim.simulate(tfinal, ncp) #Use the .simulate method to simulate and provide the final time and ncp (optional)
-    
-    sim.plot()
+    for i in range(7):
+        y[:, i] = [(j % 2*np.pi) - np.pi for j in y[:, i]]
+    #sim.plot()
+    plt.plot(t, y[:, 0])
+    plt.plot(t, y[:, 1])
+    plt.plot(t, y[:, 2])
+    plt.plot(t, y[:, 3])
+    plt.plot(t, y[:, 4])
+    plt.plot(t, y[:, 5])
+    plt.plot(t, y[:, 6])
+    plt.show()
+
 
 if __name__=='__main__':
     run_example()
