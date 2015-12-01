@@ -33,14 +33,14 @@ def run_example():
     sim = IDA(model) #Create the IDA solver
 
     # index 3
-    #sim.algvar = 7*[True] + 7*[False] + 6*[False]
+    #sim.algvar = 7*[True] + 7*[True] + 6*[False]
     #sim.suppress_alg = True
     #sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
 
     # index 2
-    sim.algvar = 7*[True] + 7*[True] + 6*[False]
+    sim.algvar = 7*[True] + 7*[False] + 6*[False]
     sim.suppress_alg = True
-    sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
+    sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
         
     tfinal = 0.03        #Specify the final time
     ncp = 500            #Number of communcation points (number of return points)
@@ -67,7 +67,6 @@ def run_example():
     P.plot(t, y[:, 18])
     P.plot(t, y[:, 19])
     '''
-    P.axis([0, tfinal, -0.7, 0.7])
     P.grid()
     P.show()
 
