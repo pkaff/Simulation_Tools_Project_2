@@ -22,19 +22,8 @@ def run_example():
         #return squeezer(t, y, yd)
         return squeezer2(t, y, yd)
         #return squeezer1(t, y, yd)
-
-        #res_0 = yd[0]-y[2]
-        #res_1 = yd[1]-y[3]
-        #res_2 = yd[2]+y[4]*y[0]
-        #res_3 = yd[3]+y[4]*y[1]+9.82
-        #res_4 = y[2]**2+y[3]**2-y[4]*(y[0]**2+y[1]**2)-y[1]*9.82
-
-        #return np.array([res_0,res_1,res_2,res_3,res_4])
     
     #The initial conditons
-    #t0  = 0.0 #Initial time
-    #y0  = [1.0, 0.0, 0.0, 0.0, 0.0] #Initial conditions
-    #yd0 = [0.0, 0.0, 0.0, -9.82, 0.0] #Initial conditions
     t0 = 0
     y0, yd0 = init_squeezer()
 
@@ -52,16 +41,16 @@ def run_example():
     tfinal = 0.03        #Specify the final time
     ncp = 500            #Number of communcation points (number of return points)
 
-    print(y0, yd0)
     t,y,yd = sim.simulate(tfinal, ncp) #Use the .simulate method to simulate and provide the final time and ncp (optional)
     #for i in range(7):
         #y[:, i] = [(j % 123123123123*np.pi) - 0*np.pi for j in y[:, i]]
     #sim.plot()
     fig, ax = P.subplots()
-    P.title('IDA, index 2 Andrew\'s squeezer')
+    P.title('IDA, index 3 Andrew\'s squeezer, Lagrange multipliers')
     P.xlabel('Time')
-    P.ylabel('Angle')
-    P.axis([0, tfinal + 0.01, -0.7, 0.7])
+    P.ylabel('Lambda')
+    #P.axis([0, tfinal + 0.01, -0.7, 0.7])
+    '''
     P.plot(t, y[:, 0], label='beta')
     P.plot(t, y[:, 1], label='theta')
     P.plot(t, y[:, 2], label='gamma')
@@ -69,6 +58,7 @@ def run_example():
     P.plot(t, y[:, 4], label='delta')
     P.plot(t, y[:, 5], label='omega')
     #P.plot(t, y[:, 6], label='epsilon')
+    '''
     legend = ax.legend(shadow=True)
 
     #plt.plot(t, y[:, 0])
@@ -78,13 +68,14 @@ def run_example():
     #plt.plot(t, y[:, 4])
     #plt.plot(t, y[:, 5])
     #plt.plot(t, y[:, 6])
-    #plt.plot(t, y[:, 14])
-    #plt.plot(t, y[:, 15])
-    #plt.plot(t, y[:, 16])
-    #plt.plot(t, y[:, 17])
-    #plt.plot(t, y[:, 18])
-    #plt.plot(t, y[:, 19])
+    P.plot(t, y[:, 14])
+    P.plot(t, y[:, 15])
+    P.plot(t, y[:, 16])
+    P.plot(t, y[:, 17])
+    P.plot(t, y[:, 18])
+    P.plot(t, y[:, 19])
     #plt.axis([0, tfinal, -0.7, 0.7])
+    P.axis([0, tfinal, -100, 200])
     P.grid()
     P.show()
 
