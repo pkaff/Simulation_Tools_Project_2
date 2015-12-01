@@ -245,7 +245,7 @@ def squeezer2(t, y, yp):
 
 
 
-def squeezer1(t, y, yp):
+def squeezer1(t, y):
 	"""
 	Residual function of the 7-bar mechanism in
 	Hairer, Vol. II, p. 533 ff, see also formula (7.11)
@@ -366,4 +366,5 @@ def squeezer1(t, y, yp):
 
 	#w = -solve(gp[:,:-1], gqq)
 	#lamb = solve(gp.T,-m.dot(w) + ff[0:7])
-	return w, lamb
+	v = y[7:14]
+	return v, w, lamb

@@ -14,7 +14,7 @@ import numpy as np
 from assimulo.problem import Implicit_Problem #Imports the problem formulation from Assimulo
 from assimulo.solvers import IDA              #Imports the solver IDA from Assimulo
 from squeezer import squeezer, squeezer2, init_squeezer
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as P
 
 
 def run_example():
@@ -42,9 +42,9 @@ def run_example():
     model.name = 'Pendulum'        #Specifies the name of problem (optional)
 
     sim = IDA(model) #Create the IDA solver
-    sim.algvar = 7*[True] + 7*[False] + 6*[False]
-    sim.suppress_alg = True
-    sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
+    #sim.algvar = 7*[True] + 7*[False] + 6*[False]
+    #sim.suppress_alg = True
+    #sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
     sim.algvar = 7*[True] + 7*[True] + 6*[False]
     sim.suppress_alg = True
     sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
@@ -57,6 +57,20 @@ def run_example():
     #for i in range(7):
         #y[:, i] = [(j % 123123123123*np.pi) - 0*np.pi for j in y[:, i]]
     #sim.plot()
+    fig, ax = P.subplots()
+    P.title('IDA, index 2 Andrew\'s squeezer')
+    P.xlabel('Time')
+    P.ylabel('Angle')
+    P.axis([0, tfinal + 0.01, -0.7, 0.7])
+    P.plot(t, y[:, 0], label='beta')
+    P.plot(t, y[:, 1], label='theta')
+    P.plot(t, y[:, 2], label='gamma')
+    P.plot(t, y[:, 3], label='phi')
+    P.plot(t, y[:, 4], label='delta')
+    P.plot(t, y[:, 5], label='omega')
+    #P.plot(t, y[:, 6], label='epsilon')
+    legend = ax.legend(shadow=True)
+
     #plt.plot(t, y[:, 0])
     #plt.plot(t, y[:, 1])
     #plt.plot(t, y[:, 2])
@@ -64,15 +78,15 @@ def run_example():
     #plt.plot(t, y[:, 4])
     #plt.plot(t, y[:, 5])
     #plt.plot(t, y[:, 6])
-    plt.plot(t, y[:, 14])
-    plt.plot(t, y[:, 15])
-    plt.plot(t, y[:, 16])
-    plt.plot(t, y[:, 17])
-    plt.plot(t, y[:, 18])
-    plt.plot(t, y[:, 19])
+    #plt.plot(t, y[:, 14])
+    #plt.plot(t, y[:, 15])
+    #plt.plot(t, y[:, 16])
+    #plt.plot(t, y[:, 17])
+    #plt.plot(t, y[:, 18])
+    #plt.plot(t, y[:, 19])
     #plt.axis([0, tfinal, -0.7, 0.7])
-    plt.grid()
-    plt.show()
+    P.grid()
+    P.show()
 
 if __name__=='__main__':
 	run_example()

@@ -39,31 +39,46 @@ def run_example(with_plots=True):
         ydot = -y[0]
         return N.array([ydot])
 
+    lambs = []
     def f2(t, y):
-        y, yp = init_squeezer()
-        w, lamb = squeezer1(t, y, yp)
-        vdot = w
-        return vdot
+        v, w, lamb = squeezer1(t, y)
+        lambs.append(lamb)
+        return N.bmat( [ [v.T], w.T    ]).T
 
 
     #Define an Assimulo problem
-    exp_mod = Explicit_Problem(f2, 4.0,
-              name = 'DOPRI5 Example: $\dot y = - y$')
+    y, yp = init_squeezer()
+    y = y[:14]
+    exp_mod = Explicit_Problem(f2, y,
+              name = 'DOPRI5, index 1 Andrew\'s squeezer')
     
     exp_sim = Dopri5(exp_mod) #Create a Dopri5 solver
 
     #Simulate
-    t, y = exp_sim.simulate(5) #Simulate 5 seconds
+    tfinal = 0.03
+    t, y = exp_sim.simulate(tfinal) #Simulate 5 seconds
     
     #Basic test
-    nose.tools.assert_almost_equal(float(y[-1]),0.02695199,5)
+    #nose.tools.assert_almost_equal(float(y[-1]),0.02695199,5)
     
     #Plot
     if with_plots:
-        P.plot(t,y)
+        #P.plot(t,y)
+        fig, ax = P.subplots()
         P.title(exp_mod.name)
         P.xlabel('Time')
-        P.ylabel('State')
+        P.ylabel('Angle')
+        P.axis([0, tfinal + 0.01, -0.7, 0.7])
+        P.plot(t, y[:, 0], label='beta')
+        P.plot(t, y[:, 1], label='theta')
+        P.plot(t, y[:, 2], label='gamma')
+        P.plot(t, y[:, 3], label='phi')
+        P.plot(t, y[:, 4], label='delta')
+        P.plot(t, y[:, 5], label='omega')
+        P.plot(t, y[:, 6], label='epsilon')
+        legend = ax.legend(shadow=True)
+        P.grid()
+     
         P.show()
         
     return exp_mod, exp_sim

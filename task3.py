@@ -1,6 +1,7 @@
 from numpy import cos, sin, array, zeros, arange
 from numpy.linalg import norm
 from scipy.optimize import fsolve
+from squeezer import *
 
 
 def gf(q):
@@ -56,4 +57,12 @@ q0 = array([-0.36,  #  beta
 q0 = arange(6)
 q0 = zeros([6, 1])
 q = fsolve(gf, q0)
-print(q)
+y, yp = init_squeezer()
+y = y.tolist()
+y = y[:7]
+del y[1]
+#y = np.array(y[0] + y[2:7])
+print("y: ", y)
+print("q: ", q)
+print("y - q: ", y - q)
+print(norm(y - q))
