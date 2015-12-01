@@ -13,15 +13,15 @@ or,
 import numpy as np
 from assimulo.problem import Implicit_Problem #Imports the problem formulation from Assimulo
 from assimulo.solvers import IDA              #Imports the solver IDA from Assimulo
-from squeezer import squeezer, init_squeezer
+from squeezer import squeezer, squeezer2, init_squeezer
 import matplotlib.pyplot as plt
 
 
 def run_example():
-
-<<<<<<< HEAD
     def residual(t,y,yd):
-        return squeezer(t, y, yd)
+        #return squeezer(t, y, yd)
+        return squeezer2(t, y, yd)
+        #return squeezer1(t, y, yd)
 
         #res_0 = yd[0]-y[2]
         #res_1 = yd[1]-y[3]
@@ -43,57 +43,36 @@ def run_example():
 
     sim = IDA(model) #Create the IDA solver
     sim.algvar = 7*[True] + 7*[False] + 6*[False]
+    sim.suppress_alg = True
     sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
+    sim.algvar = 7*[True] + 7*[True] + 6*[False]
+    sim.suppress_alg = True
+    sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
         
     tfinal = 0.03        #Specify the final time
     ncp = 500            #Number of communcation points (number of return points)
 
     print(y0, yd0)
     t,y,yd = sim.simulate(tfinal, ncp) #Use the .simulate method to simulate and provide the final time and ncp (optional)
-    for i in range(7):
-        y[:, i] = [(j % 2*np.pi) - np.pi for j in y[:, i]]
+    #for i in range(7):
+        #y[:, i] = [(j % 123123123123*np.pi) - 0*np.pi for j in y[:, i]]
     #sim.plot()
-    plt.plot(t, y[:, 0])
-    plt.plot(t, y[:, 1])
-    plt.plot(t, y[:, 2])
-    plt.plot(t, y[:, 3])
-    plt.plot(t, y[:, 4])
-    plt.plot(t, y[:, 5])
-    plt.plot(t, y[:, 6])
+    #plt.plot(t, y[:, 0])
+    #plt.plot(t, y[:, 1])
+    #plt.plot(t, y[:, 2])
+    #plt.plot(t, y[:, 3])
+    #plt.plot(t, y[:, 4])
+    #plt.plot(t, y[:, 5])
+    #plt.plot(t, y[:, 6])
+    plt.plot(t, y[:, 14])
+    plt.plot(t, y[:, 15])
+    plt.plot(t, y[:, 16])
+    plt.plot(t, y[:, 17])
+    plt.plot(t, y[:, 18])
+    plt.plot(t, y[:, 19])
+    #plt.axis([0, tfinal, -0.7, 0.7])
+    plt.grid()
     plt.show()
-
-=======
-	def residual(t,y,yd):
-
-		res_0 = yd[0]-y[2]
-		res_1 = yd[1]-y[3]
-		res_2 = yd[2]+y[4]*y[0]
-		res_3 = yd[3]+y[4]*y[1]+9.82
-		res_4 = y[2]**2+y[3]**2-y[4]*(y[0]**2+y[1]**2)-y[1]*9.82
-
-		return np.array([res_0,res_1,res_2,res_3,res_4])
-	
-	#The initial conditons
-	t0  = 0.0 #Initial time
-	y0r  = [1.0, 0.0, 0.0, 0.0, 0.0] #Initial conditions
-	yd0r = [0.0, 0.0, 0.0, -9.82, 0.0] #Initial conditions
-	y0, yd0 = init_squeezer()
-
-	model = Implicit_Problem(squeezer, y0, yd0, t0)             #Create an Assimulo problem
-	model.name = '7-arm funky mechanic'        #Specifies the name of problem (optional)
-
-	sim = IDA(model) #Create the IDA solver
-	
-	sim.algvar = 7*[True] + 7*[True] + 6*[False]
-	atol = np.array(14*[1.0e-6,] + 6*[1.0e5])
-	sim.atol = atol
-	tfinal = 0.03        #Specify the final time
-	#ncp = 500            #Number of communcation points (number of return points)
-
-	t,y,yd = sim.simulate(tfinal) #Use the .simulate method to simulate and provide the final time and ncp (optional)
-	
-	sim.plot()
->>>>>>> 18606f3dd068dd9e567502b4efa85bf814a43196
 
 if __name__=='__main__':
 	run_example()
