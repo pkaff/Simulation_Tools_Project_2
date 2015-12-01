@@ -49,3 +49,21 @@ Solver options:
 Simulation interval    : 0.0 - 0.03 seconds.
 Elapsed simulation time: 0.639144 seconds.
 
+=========================================================================================================
+index 1
+Final Run Statistics: DOPRI5, index 1 Andrew's squeezer 
+
+ Number of steps                 : 85
+ Number of function evaluations  : 704
+ Number of error test failures   : 32
+
+Solver options:
+
+ Solver                  : Dopri5 
+ Tolerances (absolute)   : 1e-06
+ Tolerances (relative)   : 1e-06
+
+Simulation interval    : 0.0 - 0.03 seconds.
+Elapsed simulation time: 0.14159699999999997 seconds.
+
+
