@@ -19,8 +19,8 @@ import matplotlib.pyplot as P
 
 def run_example():
     def residual(t,y,yd):
-        return squeezer(t, y, yd)
-        #return squeezer2(t, y, yd)
+        #return squeezer(t, y, yd)
+        return squeezer2(t, y, yd)
         #return squeezer1(t, y, yd)
     
     #The initial conditons
@@ -33,14 +33,14 @@ def run_example():
     sim = IDA(model) #Create the IDA solver
 
     # index 3
-    sim.algvar = 7*[True] + 7*[False] + 6*[False]
-    sim.suppress_alg = True
-    sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
+    #sim.algvar = 7*[True] + 7*[False] + 6*[False]
+    #sim.suppress_alg = True
+    #sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
 
     # index 2
-    #sim.algvar = 7*[True] + 7*[True] + 6*[False]
-    #sim.suppress_alg = True
-    #sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
+    sim.algvar = 7*[True] + 7*[True] + 6*[False]
+    sim.suppress_alg = True
+    sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
         
     tfinal = 0.03        #Specify the final time
     ncp = 0            #Number of communcation points (number of return points)
@@ -48,7 +48,7 @@ def run_example():
     print("500####################")
     print("####################")
     fig, ax = P.subplots()
-    P.title('IDA, index 3 Andrew\'s squeezer, step size')
+    P.title('IDA, index 2 Andrew\'s squeezer, step size')
     P.xlabel('Time')
     P.ylabel('Step size')
     #P.axis([0, tfinal + 0.01, -0.7, 0.7])
@@ -69,6 +69,7 @@ def run_example():
     P.plot(t, y[:, 17])
     P.plot(t, y[:, 18])
     P.plot(t, y[:, 19])
+    P.axis([0, tfinal, -100, 200])
     '''
     P.grid()
     P.show()
