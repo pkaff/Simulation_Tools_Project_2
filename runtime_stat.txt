@@ -1,0 +1,69 @@
+Index 3
+
+ Number of steps                                 : 843
+ Number of function evaluations                  : 1811
+ Number of Jacobian evaluations                  : 834
+ Number of function eval. due to Jacobian eval.  : 16680
+ Number of error test failures                   : 9
+ Number of nonlinear iterations                  : 1811
+ Number of nonlinear convergence failures        : 261
+
+Solver options:
+
+ Solver                       : IDA (BDF)
+ Maximal order                : 5
+ Suppressed algebr. variables : True
+ Tolerances (absolute)        : [  1.00000000e-06   1.00000000e-06   1.00000000e-06   1.00000000e-06
+   1.00000000e-06   1.00000000e-06   1.00000000e-06   1.00000000e+05
+   1.00000000e+05   1.00000000e+05   1.00000000e+05   1.00000000e+05
+   1.00000000e+05   1.00000000e+05   1.00000000e+05   1.00000000e+05
+   1.00000000e+05   1.00000000e+05   1.00000000e+05   1.00000000e+05]
+ Tolerances (relative)        : 1e-06
+
+Simulation interval    : 0.0 - 0.03 seconds.
+Elapsed simulation time: 1.5825410000000002 seconds.
+
+====================================================================dex========================================
+index2
+
+ Number of steps                                 : 1603
+ Number of function evaluations                  : 2692
+ Number of Jacobian evaluations                  : 227
+ Number of function eval. due to Jacobian eval.  : 4540
+ Number of error test failures                   : 81
+ Number of nonlinear iterations                  : 2692
+ Number of nonlinear convergence failures        : 1
+
+Solver options:
+
+ Solver                       : IDA (BDF)
+ Maximal order                : 5
+ Suppressed algebr. variables : True
+ Tolerances (absolute)        : [  1.00000000e-06   1.00000000e-06   1.00000000e-06   1.00000000e-06
+   1.00000000e-06   1.00000000e-06   1.00000000e-06   1.00000000e-06
+   1.00000000e-06   1.00000000e-06   1.00000000e-06   1.00000000e-06
+   1.00000000e-06   1.00000000e-06   1.00000000e+05   1.00000000e+05
+   1.00000000e+05   1.00000000e+05   1.00000000e+05   1.00000000e+05]
+ Tolerances (relative)        : 1e-06
+
+Simulation interval    : 0.0 - 0.03 seconds.
+Elapsed simulation time: 0.639144 seconds.
+
+=========================================================================================================
+index 1
+Final Run Statistics: DOPRI5, index 1 Andrew's squeezer 
+
+ Number of steps                 : 85
+ Number of function evaluations  : 704
+ Number of error test failures   : 32
+
+Solver options:
+
+ Solver                  : Dopri5 
+ Tolerances (absolute)   : 1e-06
+ Tolerances (relative)   : 1e-06
+
+Simulation interval    : 0.0 - 0.03 seconds.
+Elapsed simulation time: 0.14159699999999997 seconds.
+
+
