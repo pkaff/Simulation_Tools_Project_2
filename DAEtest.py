@@ -19,8 +19,8 @@ import matplotlib.pyplot as P
 
 def run_example():
     def residual(t,y,yd):
-        #return squeezer(t, y, yd)
-        return squeezer2(t, y, yd)
+        return squeezer(t, y, yd)
+        #return squeezer2(t, y, yd)
         #return squeezer1(t, y, yd)
     
     #The initial conditons
@@ -33,29 +33,32 @@ def run_example():
     sim = IDA(model) #Create the IDA solver
 
     # index 3
-    #sim.algvar = 7*[True] + 7*[True] + 6*[False]
-    #sim.suppress_alg = True
-    #sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
-
-    # index 2
     sim.algvar = 7*[True] + 7*[False] + 6*[False]
     sim.suppress_alg = True
     sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
+
+    # index 2
+    #sim.algvar = 7*[True] + 7*[True] + 6*[False]
+    #sim.suppress_alg = True
+    #sim.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
         
     tfinal = 0.03        #Specify the final time
-    ncp = 500            #Number of communcation points (number of return points)
+    ncp = 0            #Number of communcation points (number of return points)
     t,y,yd = sim.simulate(tfinal, ncp) #Use the .simulate method to simulate and provide the final time and ncp (optional)
+    print("500####################")
+    print("####################")
     fig, ax = P.subplots()
-    P.title('IDA, index 3 Andrew\'s squeezer, Lagrange multipliers')
+    P.title('IDA, index 3 Andrew\'s squeezer, step size')
     P.xlabel('Time')
-    P.ylabel('Lambda')
-    P.axis([0, tfinal + 0.01, -0.7, 0.7])
-    P.plot(t, y[:, 0], label='beta')
-    P.plot(t, y[:, 1], label='theta')
-    P.plot(t, y[:, 2], label='gamma')
-    P.plot(t, y[:, 3], label='phi')
-    P.plot(t, y[:, 4], label='delta')
-    P.plot(t, y[:, 5], label='omega')
+    P.ylabel('Step size')
+    #P.axis([0, tfinal + 0.01, -0.7, 0.7])
+    P.plot(t[1:], np.diff(t))
+    #P.plot(t, y[:, 0], label='beta')
+    #P.plot(t, y[:, 1], label='theta')
+    #P.plot(t, y[:, 2], label='gamma')
+    #P.plot(t, y[:, 3], label='phi')
+    #P.plot(t, y[:, 4], label='delta')
+    #P.plot(t, y[:, 5], label='omega')
     #P.plot(t, y[:, 6], label='epsilon')
     legend = ax.legend(shadow=True)
 
