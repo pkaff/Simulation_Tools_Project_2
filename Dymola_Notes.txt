@@ -1,0 +1,10 @@
+e_correct = epsilon - 270
+g_correct = gamma - 270
+ph_correct = phi - 270
+o_correct = omega - 90
+
+gamma: + acos(0)
+epsilon: -29*acos(-1)
+phi: +15*acos(-1)
+omega: -omega - 29*acos(-1) - asin(1)
+delta: +14*acos(-1)
