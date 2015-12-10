@@ -1,0 +1,12 @@
+    # index 3
+    sim.algvar = 7*[True] + 7*[False] + 6*[False]
+    sim.suppress_alg = True
+    sim.atol = 7*[1e-6] + 7*[1e5] + 6*[1e5]
+
+    # index 2
+    sim2.algvar = 7*[True] + 7*[True] + 6*[False]
+    sim2.suppress_alg = True
+    sim2.atol = 7*[1e-6] + 7*[1e-6] + 6*[1e5]
+        
+    tfinal = 0.03        #Specify the final time
+    ncp = 500            #Number of communcation points (number of return points)

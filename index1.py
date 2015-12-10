@@ -56,6 +56,9 @@ def run_example(with_plots=True):
 
     #Simulate
     tfinal = 0.03
+    exp_sim.inith = 1e-10
+    exp_sim.atol = 1e-10
+    exp_sim.rtol = 1e-10
     t, y = exp_sim.simulate(tfinal) #Simulate 5 seconds
     
     #Basic test
